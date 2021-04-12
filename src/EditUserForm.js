@@ -3,8 +3,14 @@ import React from 'react'
 function EditUserForm(){
     return(
         <div>
-            <h2>This should be a form</h2>
-            <form />
+           <form>
+  <label>
+      EDIT USERR FORM 
+    <input type="text" name="name" />
+  </label>
+  <input type="submit" value="Submit" />
+</form>
         </div>
     )
 }
+export default EditUserForm;
