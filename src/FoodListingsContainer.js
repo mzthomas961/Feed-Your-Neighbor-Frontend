@@ -3,13 +3,28 @@ import NewFoodListingsForm from './NewFoodListingsForm';
 import Filter from './Filter'
 import FoodListingCard from './FoodListingCard';
 
-function FoodListingsContainer(){
+function FoodListingsContainer({foodListings,handleNewFood,onDelete,}){
+
+   const foodListingsComponents = foodListings.map((foodListing) => {
+       return(
+           <FoodListingCard
+           foodListings={foodListings}
+            id={foodListing.id}
+            cuisine={foodListing.cuisine}
+            image = {foodListing.image}
+            name= {foodListing.name}
+            description = {foodListing.description}
+            user = {foodListing.user}
+            onDelete = {onDelete}
+           />
+       )
+   })
     return(
         <div>
     <h1>this is the container</h1>
-    <NewFoodListingsForm/>
+    <NewFoodListingsForm handleNewFood={handleNewFood}/>
     <Filter/>
-    <FoodListingCard/>
+    {foodListingsComponents}
     </div>
     )
 }

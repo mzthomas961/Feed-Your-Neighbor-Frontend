@@ -1,12 +1,12 @@
 import React from 'react'
 
-function TradeOfferForm(){
+function TradeOfferForm(foodListings){
     return(
         <div>
-            <form />
-            <label>
-                Trade offer form
-            </label>
+        <select name="Food" >
+    <option value="food">this is hard</option>
+    </select>
+            
         </div>
     )
 }

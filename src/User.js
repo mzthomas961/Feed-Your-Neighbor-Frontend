@@ -1,14 +1,14 @@
 import React from 'react'
 import Notification from './Notifications'
-import EditUserForm from './EditUserForm'
 import Trades from './Trades'
 
-function User() {
+function User({borough, userName}) {
+    
+    
     return(
         <div>
-        <h1> I'm the user component!</h1>
+        <h1> {userName} lives in {borough} </h1>
         <Notification/>
-        <EditUserForm/>
         <Trades/>
         </div>
     )
