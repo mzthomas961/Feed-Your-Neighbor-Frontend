@@ -1,12 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-function Filter(){
+function Filter({search,setSearch}){
     return(
-        <div>
-            <h1>
-                filter!
-            </h1>
-        </div>
+      <form className="searchbar" >
+      <input onChange={e => {
+        setSearch(e.target.value);
+      }}
+        type="text"
+        id="search"
+        placeholder="search for cuisine by name"
+        value={search}
+      />
+      <button type="submit">🔍</button>
+    </form>
     )
 }
 export default Filter;

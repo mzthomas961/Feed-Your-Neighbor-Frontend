@@ -1,11 +1,22 @@
-import React from 'react'
+import React, {useState,useEffect} from 'react'
+import Trade from './Trade'
 
-function Trades(){
+function Trades({trades, onTradeDelete}){
+
+   
+
+const tradeComponents = trades.map((trade) =>{
+    return (
+    <Trade 
+    id={trade.id}
+    trade = {trade}
+    onTradeDelete = {onTradeDelete}    />
+    )
+})
+
     return(
         <div>
-            <h2>
-            trades
-            </h2>
+            {tradeComponents}
         </div>
     )
 }

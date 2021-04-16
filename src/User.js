@@ -8,7 +8,7 @@ function User({borough, userName}) {
     return(
         <div>
         <h1> {userName} lives in {borough} </h1>
-        <Notification/>
+        
         <Trades/>
         </div>
     )

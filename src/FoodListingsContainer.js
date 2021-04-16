@@ -3,9 +3,13 @@ import NewFoodListingsForm from './NewFoodListingsForm';
 import Filter from './Filter'
 import FoodListingCard from './FoodListingCard';
 
-function FoodListingsContainer({foodListings,handleNewFood,onDelete,}){
+function FoodListingsContainer({foodListings,handleNewFood,onDelete,handleUpdateRender,setSearch,search}){
+    const filteredListingComponents=foodListings.filter(listing => {
+        return listing.name.includes(search)
+      })
 
-   const foodListingsComponents = foodListings.map((foodListing) => {
+   const foodListingsComponents = filteredListingComponents.map((foodListing) => {
+
        return(
            <FoodListingCard
            foodListings={foodListings}
@@ -16,14 +20,17 @@ function FoodListingsContainer({foodListings,handleNewFood,onDelete,}){
             description = {foodListing.description}
             user = {foodListing.user}
             onDelete = {onDelete}
+            handleUpdateRender={handleUpdateRender}
            />
        )
+       
    })
+   console.log(foodListings)
+
     return(
         <div>
-    <h1>this is the container</h1>
     <NewFoodListingsForm handleNewFood={handleNewFood}/>
-    <Filter/>
+    <Filter search = {search} setSearch = {setSearch}/>
     {foodListingsComponents}
     </div>
     )

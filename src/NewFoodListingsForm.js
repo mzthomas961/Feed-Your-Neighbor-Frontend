@@ -31,7 +31,7 @@ function NewFoodListingsForm({handleNewFood}){
       return(
         <form className="new-poem-form" onSubmit={handleSubmit}>
         <input placeholder="name" value={name} onChange={(e)=> setName(e.target.value)}/>
-        <input placeholder="desctiption" value={description} onChange={(e)=> setDescription(e.target.value)}/>
+        <input placeholder="description" value={description} onChange={(e)=> setDescription(e.target.value)}/>
         <input placeholder="image" value={image} onChange={(e)=> setImage(e.target.value)}/>
         <input placeholder="Cuisine" value={cuisine} onChange={(e)=> setCuisine(e.target.value)}/>
         <input type="submit" value="Share your masterpiece" />
