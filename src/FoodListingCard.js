@@ -1,15 +1,27 @@
 import React, {useState} from 'react' 
 import FoodListingDetailedView from './FoodListingDetailedView'
-import TradeOfferForm from './TradeOfferForm'
-import EditFoodListingForm from './EditFoodListingForm'
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col'
 
-function FoodListingCard({onDelete,id,image,name,description, user,cuisine,foodListings,handleUpdateRender}){
+
+
+
+
+
+function FoodListingCard({currentUser,onDelete,id,image,name,description, user,cuisine,foodListings,handleUpdateRender,handleNewTrade}){
 
     const [hidden, setHidden] = useState(true)
+    console.log(id)
+    const userTruth=(currentUser === user.id)
+
+
     function handleFoodDelete(e){
+        console.log(id)
         fetch(`http://localhost:3000/food_listings/${id}`,{
             method: 'DELETE'
           })
+
 
           onDelete(id)
     }
@@ -18,12 +30,23 @@ function FoodListingCard({onDelete,id,image,name,description, user,cuisine,foodL
       }
     return(
         <div>
-            <h1>{name}</h1>
-            <img src = {image} width="200" height="300" />
-            <button onClick={handleFoodDelete}>Delete Food</button>
-            <button  onClick={handleDetails}>Show Details </button>
-            {hidden? null: <FoodListingDetailedView id={id} description = {description} user={user} cuisine={cuisine} foodListings={foodListings}  handleUpdateRender = {handleUpdateRender} />}
+<Col className="container-fluid mt-4">
+            <Card style={{ width: '18rem'  } } className="glow">
+  <Card.Img class="cardImage" variant="top" src={image}/>
+  <Card.Body className="glow">
+    <Card.Title>{name}</Card.Title>
+    <Card.Text>
+     {description}
+    </Card.Text>
+    {userTruth && <Button size="sm" variant="danger" onClick={handleFoodDelete}>Delete Food </Button>}
+            <Button size="sm"  variant="success" onClick={handleDetails}>Show Details </Button>
+            {hidden? null: <FoodListingDetailedView userTruth={userTruth} currentUser={currentUser} handleNewTrade={handleNewTrade} id={id} description = {description} user={user} cuisine={cuisine} foodListings={foodListings}  handleUpdateRender = {handleUpdateRender} />}
+  </Card.Body >
+</Card>
+</Col>
         </div>
+
+           
     )
 }
 export default FoodListingCard

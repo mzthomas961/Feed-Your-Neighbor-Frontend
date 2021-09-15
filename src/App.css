@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+img {
+  max-width: 300px;
+  max-height: 200px;
+}
+.glow {
+  border: 2px solid #dadada;
+  border-radius: 7px;
+}
+
+.glow:focus { 
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+}
+

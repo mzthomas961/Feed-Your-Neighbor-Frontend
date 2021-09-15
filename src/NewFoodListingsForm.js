@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Button from 'react-bootstrap/Button'
 
 function NewFoodListingsForm({handleNewFood}){
     const [name,setName ] = useState("")
@@ -15,7 +16,6 @@ function NewFoodListingsForm({handleNewFood}){
        cuisine:cuisine,
        user_id: 1
       };
-      console.log(data)
   
       fetch("http://localhost:3000/food_listings", {
         method: 'POST',
@@ -29,12 +29,12 @@ function NewFoodListingsForm({handleNewFood}){
         handleNewFood(newFoodObj)
       })}
       return(
-        <form className="new-poem-form" onSubmit={handleSubmit}>
+        <form className="new-food-form" onSubmit={handleSubmit}>
         <input placeholder="name" value={name} onChange={(e)=> setName(e.target.value)}/>
-        <input placeholder="description" value={description} onChange={(e)=> setDescription(e.target.value)}/>
+        <textarea placeholder="description" value={description} onChange={(e)=> setDescription(e.target.value)}/>
         <input placeholder="image" value={image} onChange={(e)=> setImage(e.target.value)}/>
         <input placeholder="Cuisine" value={cuisine} onChange={(e)=> setCuisine(e.target.value)}/>
-        <input type="submit" value="Share your masterpiece" />
+        <Button variant="light" type="submit">Feed your neighbor!</Button>
       </form>
       )}
 

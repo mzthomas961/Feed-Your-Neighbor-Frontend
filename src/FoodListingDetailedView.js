@@ -1,10 +1,10 @@
 import React, {useState} from 'react' 
-import TradeOfferForm from './TradeOfferForm'
 import EditFoodListingForm from './EditFoodListingForm'
 
-function FoodListingDetailedView({description, user,cuisine,foodListings,id, handleUpdateRender}){
-    console.log(foodListings)
+function FoodListingDetailedView({currentUser, description, user,cuisine,foodListings,id, handleUpdateRender,handleNewTrade}){
+ 
     const [buyerFoodID, setBuyerFoodID] = useState('');
+    console.log(buyerFoodID)
 
     function handleChange(e)
     {
@@ -24,11 +24,18 @@ function FoodListingDetailedView({description, user,cuisine,foodListings,id, han
             },
             body: JSON.stringify(data),
           })
-          .then((r)=>r.json())
+          .then((r)=>r.json()) 
           .then((newTrade)=>{
-            console.log(newTrade)
+            handleNewTrade(newTrade)
           })
+
     }
+    const userTruth=(currentUser === user.id)
+
+    const userFoods = foodListings.filter(food =>{
+        return food.user.id === currentUser
+    })
+    console.log(user.id)
 
 
     return(
@@ -36,13 +43,13 @@ function FoodListingDetailedView({description, user,cuisine,foodListings,id, han
             <h2>Seller: {user.name}</h2>
             <h3>Cuisine: {cuisine}</h3>
             <section>Description:{description}</section>
-            <EditFoodListingForm id={id} user={user} handleUpdateRender = {handleUpdateRender}/>
+            {userTruth && <EditFoodListingForm id={id} user={user} handleUpdateRender = {handleUpdateRender}/>}
             <form onSubmit={handleNotificationSubmit}>
             <label>Choose an item to trade!</label>
             <select value={buyerFoodID} onChange={handleChange}>
-                {foodListings.map(foodListing => {
+                {userFoods.map(foodListing => {
                     return <option value = {foodListing.id}> 
-                        {foodListing.name}
+                        {foodListing.name} from {foodListing.user.name}
                     </option>
                 })}
             </select>

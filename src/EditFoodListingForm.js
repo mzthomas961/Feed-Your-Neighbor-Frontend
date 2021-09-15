@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 function EditFoodListingForm({id,user,handleUpdateRender}){
     const [newName,setNewName ] = useState("")
@@ -30,13 +32,15 @@ function EditFoodListingForm({id,user,handleUpdateRender}){
 
     return(
         
-        <form className="update-form" onSubmit={(e) => handleFoodListingUpdate(id, e)} >
-        <input placeholder="name"  value={newName} onChange={(e)=> setNewName(e.target.value)}/>
-        <input placeholder="description" value={newDescription} onChange={(e)=> setNewDescription(e.target.value)} />
-        <input placeholder="image" value={newImage}  onChange={(e)=> setNewImage(e.target.value)}/>
-        <input placeholder="Cuisine" value={newCuisine} onChange={(e)=> setNewCuisine(e.target.value)}/>
-        <input type="submit" value="update food listing" />
-        </form>
+        <Form className="update-form" onSubmit={(e) => handleFoodListingUpdate(id, e)} >
+        < Form.Control placeholder="name"  value={newName} onChange={(e)=> setNewName(e.target.value)}/>
+        <Form.Control placeholder="description" value={newDescription} onChange={(e)=> setNewDescription(e.target.value)} />
+        <Form.Control placeholder="image" value={newImage}  onChange={(e)=> setNewImage(e.target.value)}/>
+        <Form.Control placeholder="Cuisine" value={newCuisine} onChange={(e)=> setNewCuisine(e.target.value)}/>
+        <Button variant="primary" type="submit">
+    Submit
+  </Button>
+        </Form>
 
         
     )

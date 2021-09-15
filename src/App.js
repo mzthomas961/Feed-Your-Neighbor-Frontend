@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";import './App.css';
+import React, { useEffect, useState } from "react";
+import './App.css';
 import User from './User'
 import FoodListingsContainer from './FoodListingsContainer'
 import Trades from './Trades'
@@ -8,6 +9,8 @@ function App() {
   const [users,setUsers] = useState([])
   const [search,setSearch] = useState("")
   const [trades, setTrades] = useState([])
+  const currentUser = 1
+  console.log(currentUser)
 
   useEffect(() => {
     fetch('http://localhost:3000/trades')
@@ -59,11 +62,18 @@ function onTradeDelete(id){
   const updatedTrades = trades.filter(trade => trade.id !== id)
   setTrades(updatedTrades)
 }
+function handleNewTrade(newTrade){
+  const newTrades= newTrade && [...trades,newTrade]
+  setTrades(newTrades)
+}
 
   return (
     <div>
-          <Trades trades={trades} onTradeDelete={onTradeDelete}/>
+      <h1>Logged in as: Matt</h1>
+          <Trades trades={trades} onTradeDelete={onTradeDelete} />
     <FoodListingsContainer foodListings={foodListings} 
+    currentUser={currentUser}
+    handleNewTrade={handleNewTrade}
      handleNewFood={handleNewFood}
      onDelete={onDelete} 
     handleUpdateRender = {handleUpdateRender}

@@ -1,7 +1,7 @@
-import React, {useState,useEffect} from 'react'
+import React from 'react'
 import Trade from './Trade'
 
-function Trades({trades, onTradeDelete}){
+function Trades({trades, onTradeDelete, }){
 
    
 
